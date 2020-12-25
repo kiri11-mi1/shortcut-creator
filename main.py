@@ -6,7 +6,9 @@ from win32com.client import Dispatch
 Tk().withdraw()
 
 # Открытие диалогового окна для выбора файла
-file = askopenfile(mode ='r', filetypes =[('Shortcuts', '*.url')])
+if (file := askopenfile(mode ='r', filetypes =[('Shortcuts', '*.url')])) is None:
+    exit()
+
 rows = file.readlines()
 
 params = {
